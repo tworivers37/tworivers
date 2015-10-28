@@ -58,11 +58,10 @@ char* ConvToRPNExp(char exp[]){
 	char *conv=(char*)malloc(sizeof(char)*expLen*2+1);
 	Conv convExp;
 	Value *print;
-	int i,j=0,idx=0;
+	int i,j=0;
 	char tok,tokTmp,popOp;
-	char digitCheck=FALSE;
 	char *addStr=(char*)malloc(sizeof(char)*30);
-	int tmpDigit=0,convCnt=0;
+	int tmpDigit=0;
 
 	memset(conv,0,sizeof(char)*expLen*2+1);
 	LBStackInit(&stack);
