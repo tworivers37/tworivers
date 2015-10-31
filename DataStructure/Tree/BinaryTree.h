@@ -24,4 +24,6 @@ void PreorderTraverse(BTreeNode *bt,VisitFuncPtr action);
 void InorderTraverse(BTreeNode *bt,VisitFuncPtr action);
 void PostTraverse(BTreeNode *bt,VisitFuncPtr action);
 
+void DeleteTree(BTreeNode *bt);
+
 #endif

@@ -56,3 +56,11 @@ void PostTraverse(BTreeNode *bt,VisitFuncPtr action){
 	PostTraverse(bt->right,action);
 	action(bt->data);
 }
+
+void DeleteTree(BTreeNode *bt){
+	if(bt==NULL) return;
+	DeleteTree(bt->left);
+	DeleteTree(bt->right);
+	printf("Delete Node Data : %d\n",bt->data);
+	free(bt);
+}

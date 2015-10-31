@@ -26,6 +26,9 @@ void main(){
 	InorderTraverse(bt1,print);
 	puts("");
 	PostTraverse(bt1,print);
+	puts("");
+
+	DeleteTree(bt1);
 
 }
 
