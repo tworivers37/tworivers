@@ -3,7 +3,7 @@
 #include "ListBaseStack.h"
 
 BTreeNode *MakeExpTree(char exp[]){
-	Stack stack; //ListBaseStack.h 의 Data 를 typedef struct _bTreeNode* Data 로 변경 필요
+	Stack stack; // ListBaseStack.h 의 Data 를 typedef struct _bTreeNode* Data 로 변경 필요
 	BTreeNode * node;
 	int expLen=strlen(exp);
 	int i,j=0;
