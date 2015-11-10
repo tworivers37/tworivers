@@ -1,4 +1,4 @@
-int BSearch(int arr[],int first,int last,int target){
+int BinarySearch(int arr[],int first,int last,int target){
 	int mid;
 	if(first>last) return -1;
 	mid=(first+last)/2;
