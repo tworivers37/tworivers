@@ -64,3 +64,29 @@ void DeleteTree(BTreeNode *bt){
 	printf("Delete Node Data : %d\n",bt->data);
 	free(bt);
 }
+
+BTreeNode *RemoveLeftSubTree(BTreeNode *bt){
+	BTreeNode *dNode;
+	if(bt!=NULL){
+		dNode=bt->left;
+		bt->left=NULL;
+	}
+	return dNode;
+}
+
+BTreeNode * RemoveRightSubTree(BTreeNode *bt){
+	BTreeNode *dNode;
+	if(bt!=NULL){
+		dNode=bt->right;
+		bt->right=NULL;
+	}
+	return dNode;
+}
+
+void ChangeLeftSubTree(BTreeNode *main,BTreeNode *sub){
+	main->left=sub;
+}
+
+void ChangeRightSubTree(BTreeNode *main,BTreeNode *sub){
+	main->right=sub;
+}
