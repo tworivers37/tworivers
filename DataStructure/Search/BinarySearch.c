@@ -4,6 +4,6 @@ int BinarySearch(int arr[],int first,int last,int target){
 	mid=(first+last)/2;
 
 	if(arr[mid]==target) return mid;
-	else if(arr[mid]>target) return BSearch(arr,first,mid-1,target);
-	else return BSearch(arr,mid+1,last,target);
+	else if(arr[mid]>target) return BinarySearch(arr,first,mid-1,target);
+	else return BinarySearch(arr,mid+1,last,target);
 }
