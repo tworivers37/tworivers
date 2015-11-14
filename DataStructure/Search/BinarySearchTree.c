@@ -1,33 +1,50 @@
 #include "BinarySearchTree.h"
-
+#include "AVLRebalance.h"
 void BSTMakeAndInit(BTreeNode **pRoot){
 	*pRoot=NULL;
 }
 BSTData BSTGetNodeData(BTreeNode *bst){
 	return GetData(bst);
 }
-void BSTInsert(BTreeNode **pRoot,BSTData data){
-	BTreeNode *pNode=NULL;
-	BTreeNode *cNode=*pRoot;
-	BTreeNode *nNode=NULL;
+BTreeNode* BSTInsert(BTreeNode **pRoot,BSTData data){
+	//BTreeNode *pNode=NULL;
+	//BTreeNode *cNode=*pRoot;
+	//BTreeNode *nNode=NULL;
 
-	//위치 찾기
-	while(cNode!=NULL){
-		if(data==GetData(cNode)) return;
-		pNode=cNode;
-		if(GetData(cNode)<data) cNode=GetRightSubTree(cNode);
-		else cNode=GetLeftSubTree(cNode);
-	}
-	
-	nNode=MakeBTreeNode();
-	SetData(nNode,data);
+	////위치 찾기
+	//while(cNode!=NULL){
+	//	if(data==GetData(cNode)) return;
+	//	pNode=cNode;
+	//	if(GetData(cNode)<data) cNode=GetRightSubTree(cNode);
+	//	else cNode=GetLeftSubTree(cNode);
+	//}
+	//
+	//nNode=MakeBTreeNode();
+	//SetData(nNode,data);
 
-	if(pNode!=NULL){ //삽입 노드가 루트노드가 아닌 경우
-		if(GetData(pNode)<data) MakeRightSubTree(pNode,nNode);
-		else MakeLeftSubTree(pNode,nNode);
+	//if(pNode!=NULL){ //삽입 노드가 루트노드가 아닌 경우
+	//	if(GetData(pNode)<data) MakeRightSubTree(pNode,nNode);
+	//	else MakeLeftSubTree(pNode,nNode);
+	//}
+	//else //삽입 되는 노드가 루트 노드가 되는 경우
+	//	*pRoot=nNode;
+
+	if(*pRoot==NULL){
+		*pRoot=MakeBTreeNode();
+		SetData(*pRoot,data);
 	}
-	else //삽입 되는 노드가 루트 노드가 되는 경우
-		*pRoot=nNode;
+	else if(GetData(*pRoot)>data){
+		BSTInsert(&((*pRoot)->left),data);
+		*pRoot=Rebalance(pRoot);
+	}
+	else if(GetData(*pRoot)<data){
+		BSTInsert(&((*pRoot)->right),data);
+		*pRoot=Rebalance(pRoot);
+	}
+	else
+		return NULL; //키(data) 중복
+
+	return *pRoot;
 }
 BTreeNode *BSTSearch(BTreeNode *bst,BSTData target){
 	BTreeNode *cNode=bst;
@@ -101,6 +118,7 @@ BTreeNode* BSTRemove(BTreeNode** pRoot,BSTData target){
 	if(GetRightSubTree(pVRoot)!=*pRoot) *pRoot=GetRightSubTree(pVRoot);
 
 	free(pVRoot);
+	*pRoot=Rebalance(pRoot);
 	return dNode;
 }
 
