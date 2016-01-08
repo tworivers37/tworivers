@@ -4,7 +4,7 @@
 #include<sys/socket.h>
 #include<stdlib.h>
 
-#define MESSAGE_SIZE 50
+#define MESSAGE_SIZE 1024
 
 int main(int argc,char**argv){
 	int sSock,cSock;
