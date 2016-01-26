@@ -54,7 +54,7 @@ int APIENTRY WinMain(HINSTANCE hInstance,HINSTANCE hPrevInstance,LPSTR lpszCmdPa
 		TranslateMessage(&Message); //키보드 입력 메시지를 가공하여 프로그램에서 쉽게 쓸 수 있도록 함.
 		DispatchMessage(&Message); //메시지를 윈도우 메시지 처리 함수(WndProc)으로 전달.
 	}
-	return (int)Message.wParam;
+	return (int)Message.wParam; //WM_QUIT 로 부터 전달된 탈출코드
 }
 //운영체제에 의해 호출.
 //hWnd : 핸들
