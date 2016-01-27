@@ -12,5 +12,4 @@ int main(int argc,char **argv){
 	if(pid==0) puts("End Child");
 	else puts("End Parent");
 	return 0;
-}	
-	
+}		
