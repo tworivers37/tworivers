@@ -47,14 +47,17 @@ int main(int argc,char **argv){
 			continue;
 		}
 		if(pid==0){
-			close(serv_sock);
+			//소켓에 할당된 파일디스크립터가 두 개이면
+			//두 개의 파일디스크립터 모두가 소멸 되어야
+			//소켓도 소멸이 됨.
+			close(serv_sock);//자식에겐 필요 없으므로 닫아줌.
 			while((str_len=read(client_sock,buf,BUF))!=0)
 				write(client_sock,buf,str_len);
 			close(client_sock);
 			puts("client disconnected...");
 			return 0;
 		}
-		else close(client_sock);
+		else close(client_sock);//부모에겐 필요없음.
 	}
 	close(serv_sock);
 	return 0;
