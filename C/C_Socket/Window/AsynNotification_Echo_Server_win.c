@@ -42,6 +42,7 @@ void main(int argc,char**argv){
 	if(listen(serv_sock,5)==SOCKET_ERROR) ErrorHandling("listen error");
 
 	newEvent=WSACreateEvent();
+	puts("WSAEventSelect \n");
 	if(WSAEventSelect(serv_sock,newEvent,FD_ACCEPT)==SOCKET_ERROR) //접속 이벤트 관찰
 		ErrorHandling("WSAEventSelect error");
 
@@ -50,17 +51,33 @@ void main(int argc,char**argv){
 	numOfClientSock++;
 
 	while(1){
+		printf("<--WSAWaitForMultipleEvents first-->\n");//
+
 		posInfo=WSAWaitForMultipleEvents(numOfClientSock,eventArr,FALSE,WSA_INFINITE,FALSE);//이벤트 발생 유무 확인
 																							//소켓의 이벤트 발생에 의해서 이벤트 오브젝트가 signaled 상태가 되어야 반환하는 함수
 		startIdx=posInfo-WSA_WAIT_EVENT_0;//이벤트가 발생한 이벤트 배열의 첫번째 인덱스
+
+		printf("posInfo : %d \n",posInfo);
+		printf("numOfClientSock : %d \n",numOfClientSock);
+
 		for(i=startIdx;i<numOfClientSock;i++){
+			printf("for WSAWaitForMultipleEvents 1 \n");//
+			
 			sigEventIdx=WSAWaitForMultipleEvents(1,&eventArr[i],TRUE,0,FALSE);	//하나의 이벤트씩
 																				//이벤트가 발생한 이벤트 오브젝트는 signaled 상태가 됨
-			if(sigEventIdx==WSA_WAIT_FAILED || sigEventIdx==WSA_WAIT_TIMEOUT) continue;
+			printf("for WSAWaitForMultipleEvents 2 \n");//
+
+			if(sigEventIdx==WSA_WAIT_FAILED || sigEventIdx==WSA_WAIT_TIMEOUT){
+				//여러명의 클라이언트가 서버로 접속해 있는 상태에서
+				//새로운 클라이언트가 서버로 접속하게 되면 클라이언트들의 TIMEOUT 발생(클라이언트가 아무것도 안하는 상태에서)
+				printf("if : %s (%d)\n",(sigEventIdx==WSA_WAIT_FAILED)?"WSA_WAIT_FAILED":"WSA_WAIT_TIMEOUT",sigEventIdx);
+				continue;
+			}
 			else{
 				sigEventIdx=i; //발생한 이벤트 인덱스
-				
+				printf("WSAEnumNetworkEvents 1 \n");
 				WSAEnumNetworkEvents(sockArr[sigEventIdx],eventArr[sigEventIdx],&netEvents); // 이벤트 구분(signaled 상태가된 원인을 알기 위함)
+				printf("WSAEnumNetworkEvents 2 \n");
 
 				if(netEvents.lNetworkEvents & FD_ACCEPT){ //접속 이벤트 일 때
 					if(netEvents.iErrorCode[FD_ACCEPT_BIT]!=0){
@@ -75,7 +92,7 @@ void main(int argc,char**argv){
 					eventArr[numOfClientSock]=newEvent;
 					sockArr[numOfClientSock]=client_sock;
 					numOfClientSock++;
-					puts("connected new client ....");
+					printf("connected new client(%d) ....\n",numOfClientSock);
 				}
 
 				if(netEvents.lNetworkEvents & FD_READ){ //읽기 이벤트 일 때
@@ -83,7 +100,9 @@ void main(int argc,char**argv){
 						puts("Read error");
 						break;
 					}
+					printf("Echo Recv(%d)\n",i);
 					strLen=recv(sockArr[sigEventIdx],msg,sizeof(msg),0);
+					printf("Echo Send(%d)\n",i);
 					send(sockArr[sigEventIdx],msg,strLen,0);
 				}
 
