@@ -97,19 +97,28 @@ double Polynomial::Horner(double x){
 			zeroCnt=it->exp-itNext->exp;
 		}
 
-		zeroCnt=it->exp-itNext->exp;
-		if(zeroCnt-tmpCnt >1){
+		if(itNext==m_list.end()){ //x^3+x^2
 			sum*=x;
-			tmpCnt++;
 		}
 		else{
-			sum*=x;
-			sum+=itNext->coef;
+			zeroCnt=it->exp-itNext->exp;
+			if(zeroCnt-tmpCnt >1){
+				sum*=x;
+				tmpCnt++;
+			}
+			else{
+				sum*=x;
+				sum+=itNext->coef;
 			
-			tmpCnt=0;
-			it++;
-			itNext++;
+				tmpCnt=0;
+				it++;
+				itNext++;
+			}
 		}
+
+		
+		
+		
 		cnt++;
 	}
 	return sum;
@@ -251,7 +260,9 @@ int main(){
 	Polynomial pl,pl2;
 	pl.AddTerm(4,2);
 	pl.AddTerm(5,2);
-	pl.AddTerm(2,1);
+	pl.AddTerm(3,1);
+	pl.AddTerm(2,3);
+	pl.AddTerm(1,3);
 	pl.AddTerm(0,3);
 
 	pl.printList();
@@ -263,10 +274,13 @@ int main(){
 	pl2.AddTerm(2,1);
 	pl2.AddTerm(6,1);
 	pl2.AddTerm(7,1);
-	pl2.AddTerm(7,1);
-	pl2.AddTerm(7,1);
+	//pl2.AddTerm(7,1);
+	//pl2.AddTerm(7,1);
 
 	pl2.printList();
+	cout<<pl2.Evaluate(2)<<endl;
+	cout<<pl2.Horner(2)<<endl;
+
 
 	Polynomial s=pl+pl2;
 	s.printList();
