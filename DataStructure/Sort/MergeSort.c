@@ -26,8 +26,8 @@ void MergeTwoArea(int arr[],int left,int mid,int right){
 		sIdx++;
 	}
 
-	if(fIdx>mid) for(i=rIdx;i<right;i++,sIdx++) sortArray[sIdx]=arr[i];
-	else for(i=fIdx;i<mid;i++,sIdx++) sortArray[sIdx]=arr[i];
+	if(fIdx>mid) for(i=rIdx;i<=right;i++,sIdx++) sortArray[sIdx]=arr[i];
+	else for(i=fIdx;i<=mid;i++,sIdx++) sortArray[sIdx]=arr[i];
 
 	for(i=left;i<=right;i++) arr[i]=sortArray[i];
 
