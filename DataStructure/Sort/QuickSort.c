@@ -7,25 +7,25 @@ void Swap(int arr[],int idx1,int idx2){
 }
 
 int Partition(int arr[],int left,int right){
-	//pivotÀ» °¡Àå ¿ŞÂÊÀ¸·Î ¼±ÅÃ
+	//pivotì„ ê°€ì¥ ì™¼ìª½ìœ¼ë¡œ ì„ íƒ
 	int pivot=arr[left];
 	int low=left+1;
 	int high=right;
 
-	if(low<=high){
+	while(low<=high){
 		while(pivot>=arr[low] && low<=right) low++;
 		while(pivot<=arr[high] && high>=(left+1)) high--;
 		if(low<=high) Swap(arr,low,high);
 	}
 	Swap(arr,left,high);
-	return high; //Á¤·Ä ±âÁØ¿¡ ¾Ë¸Â´Â À§Ä¡·Î ÀÌµ¿µÈ pivotÀÇ index
+	return high; //ì •ë ¬ ê¸°ì¤€ì— ì•Œë§ëŠ” ìœ„ì¹˜ë¡œ ì´ë™ëœ pivotì˜ index
 }
 
 void QuickSort(int arr[],int left,int right){
 	int pivot;
 	if(left<=right){
 		pivot=Partition(arr,left,right);
-		QuickSort(arr,left,pivot-1); //¿ŞÂÊ
-		QuickSort(arr,pivot+1,right); //¿À¸¥ÂÊ
+		QuickSort(arr,left,pivot-1); //ì™¼ìª½
+		QuickSort(arr,pivot+1,right); //ì˜¤ë¥¸ìª½
 	}
 }
