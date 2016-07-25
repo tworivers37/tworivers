@@ -1,30 +1,30 @@
 /*
-0À¸·Î ¸¸µé±â
-½Ã°£ Á¦ÇÑ: 1 Sec  ¸Þ¸ð¸® Á¦ÇÑ: 128 MB
-[Á¦Ãâ]
-¹®Á¦ ¼³¸í
-1ºÎÅÍ N±îÁöÀÇ ¼ö¸¦ ¼øÂ÷ÀûÀ¸·Î ³ª¿­ÇÑ ¼ö¿­ 1 2 3 ... NÀ» »ý°¢ÇÏÀÚ.
+0ìœ¼ë¡œ ë§Œë“¤ê¸°
+ì‹œê°„ ì œí•œ: 1 Sec  ë©”ëª¨ë¦¬ ì œí•œ: 128 MB
+[ì œì¶œ]
+ë¬¸ì œ ì„¤ëª…
+1ë¶€í„° Nê¹Œì§€ì˜ ìˆ˜ë¥¼ ìˆœì°¨ì ìœ¼ë¡œ ë‚˜ì—´í•œ ìˆ˜ì—´ 1 2 3 ... Nì„ ìƒê°í•˜ìž.
 
-±×¸®°í '+'³ª '-', ¶Ç´Â ' '(°ø¹é)À» °¢°¢ÀÇ ¼ýÀÚ »çÀÌ¿¡ »ðÀÔÇÏÀÚ('+'´Â ´õÇÏ±â, '-'´Â »©±â, 
-' '(°ø¹é)Àº ¼ýÀÚ¸¦ ÀÌ¾î ºÙÀÌ´Â °ÍÀ» ¶æÇÑ´Ù). ÀÌ·¸°Ô ¸¸µç ¼ö½ÄÀÇ °ªÀÌ 0ÀÌ µÇ´Â ¸ðµç °æ¿ì¸¦ Ã£¾Æº¸ÀÚ
+ê·¸ë¦¬ê³  '+'ë‚˜ '-', ë˜ëŠ” ' '(ê³µë°±)ì„ ê°ê°ì˜ ìˆ«ìž ì‚¬ì´ì— ì‚½ìž…í•˜ìž('+'ëŠ” ë”í•˜ê¸°, '-'ëŠ” ë¹¼ê¸°, 
+' '(ê³µë°±)ì€ ìˆ«ìžë¥¼ ì´ì–´ ë¶™ì´ëŠ” ê²ƒì„ ëœ»í•œë‹¤). ì´ë ‡ê²Œ ë§Œë“  ìˆ˜ì‹ì˜ ê°’ì´ 0ì´ ë˜ëŠ” ëª¨ë“  ê²½ìš°ë¥¼ ì°¾ì•„ë³´ìž
 
-ÀÔ·Â
-Ã¹¹øÂ° ÁÙ¿¡ Å×½ºÆ® ÄÉÀÌ½ºÀÇ °³¼ö°¡ ÁÖ¾îÁø´Ù(<10).
+ìž…ë ¥
+ì²«ë²ˆì§¸ ì¤„ì— í…ŒìŠ¤íŠ¸ ì¼€ì´ìŠ¤ì˜ ê°œìˆ˜ê°€ ì£¼ì–´ì§„ë‹¤(<10).
 
-°¢ Å×½ºÆ® ÄÉÀÌ½º¿£ ÀÚ¿¬¼ö NÀÌ ÁÖ¾îÁø´Ù(3 <= N <= 9).
+ê° í…ŒìŠ¤íŠ¸ ì¼€ì´ìŠ¤ì—” ìžì—°ìˆ˜ Nì´ ì£¼ì–´ì§„ë‹¤(3 <= N <= 9).
 
-Ãâ·Â
-°¢ Å×½ºÆ® ÄÉÀÌ½º¿¡ ´ëÇØ  °á°ú°¡ 0ÀÌ µÇ´Â ¸ðµç ¼ö½ÄÀ»  »çÀü¼øÀ¸·Î Ãâ·ÂÇÑ´Ù. °¢ Å×½ºÆ® ÄÉÀÌ½ºÀÇ °á°ú´Â ÇÑ ÁÙÀ» ¶ç¿ö ±¸ºÐÇÑ´Ù.
+ì¶œë ¥
+ê° í…ŒìŠ¤íŠ¸ ì¼€ì´ìŠ¤ì— ëŒ€í•´  ê²°ê³¼ê°€ 0ì´ ë˜ëŠ” ëª¨ë“  ìˆ˜ì‹ì„  ì‚¬ì „ìˆœìœ¼ë¡œ ì¶œë ¥í•œë‹¤. ê° í…ŒìŠ¤íŠ¸ ì¼€ì´ìŠ¤ì˜ ê²°ê³¼ëŠ” í•œ ì¤„ì„ ë„ì›Œ êµ¬ë¶„í•œë‹¤.
 
-(Âü°í, ' '´Â ASCII °ªÀÌ 32 ÀÌ°í '+'´Â 43, '-'  45ÀÌ´Ù.)
+(ì°¸ê³ , ' 'ëŠ” ASCII ê°’ì´ 32 ì´ê³  '+'ëŠ” 43, '-'  45ì´ë‹¤.)
 
-(Âü°í2, "1 2" ´Â "1+2"º¸´Ù »çÀü¼øÀ¸·Î ¾Õ¼± ¼ö½ÄÀÌ´Ù.)
+(ì°¸ê³ 2, "1 2" ëŠ” "1+2"ë³´ë‹¤ ì‚¬ì „ìˆœìœ¼ë¡œ ì•žì„  ìˆ˜ì‹ì´ë‹¤.)
 
-ÀÔ·Â ¿¹½Ã
+ìž…ë ¥ ì˜ˆì‹œ
 2
 3
 7
-Ãâ·Â ¿¹½Ã
+ì¶œë ¥ ì˜ˆì‹œ
 1+2-3
 
 1+2-3+4-5-6+7 
@@ -38,8 +38,8 @@
 #include<stdio.h>
 #include<stdlib.h>
 
-//cIdx´Â ÀÌÁ¦ ÁöÁ¤ÇÒ ¿¬»ê±âÈ£ À§Ä¡
-//ch´Â ¿¬»ê±âÈ£
+//cIdxëŠ” ì´ì œ ì§€ì •í•  ì—°ì‚°ê¸°í˜¸ ìœ„ì¹˜
+//chëŠ” ì—°ì‚°ê¸°í˜¸
 void exeFunc(int *arr,int cIdx,int nIdx,int ch){
 	int i;
 	int sum=0;
@@ -50,7 +50,7 @@ void exeFunc(int *arr,int cIdx,int nIdx,int ch){
 		tmp=(int*)malloc(sizeof(int)*nIdx);
 		tmp[0]=0;
 
-		//' ' ¶§¹®¿¡ tmp ¹è¿­¿¡ ¸ÂÃç¼­ ¹è¿­.
+		//' ' ë•Œë¬¸ì— tmp ë°°ì—´ì— ë§žì¶°ì„œ ë°°ì—´.
 		for(i=1;i<nIdx;i++){
 			if(arr[i]==2 && i%2==0){
 				tmp[tmpCnt-1]*=10;
@@ -60,7 +60,7 @@ void exeFunc(int *arr,int cIdx,int nIdx,int ch){
 			else tmp[tmpCnt++]=arr[i];
 		}
 
-		//°è»ê
+		//ê³„ì‚°
 		for(i=0;i<tmpCnt;i++){
 			if(i%2==0){
 				if(tmp[i]==0) sum+=tmp[i+1];
@@ -86,7 +86,7 @@ void exeFunc(int *arr,int cIdx,int nIdx,int ch){
 		arr[cIdx]=ch;
 		for(i=0;i<3;i++){
 			exeFunc(arr,cIdx,nIdx,ch);
-			arr[cIdx]=i+1;// ´ÙÀ½ ±âÈ£(+ -> - -> ' ')
+			arr[cIdx]=i+1;// ë‹¤ìŒ ê¸°í˜¸(+ -> - -> ' ')
 		}
 	}
 }
@@ -96,12 +96,12 @@ void zeroFunc(int *n,int size){
 	int *arr;
 	int nIdx;
 
-	//¼ýÀÚ´Â È¦¼ö ÀÎµ¦½º
-	//±âÈ£´Â Â¦¼ö ÀÎµ¦½º 2ºÎÅÍ
+	//ìˆ«ìžëŠ” í™€ìˆ˜ ì¸ë±ìŠ¤
+	//ê¸°í˜¸ëŠ” ì§ìˆ˜ ì¸ë±ìŠ¤ 2ë¶€í„°
 	for(i=0;i<size;i++){
 		nIdx=n[i]*2;
 		arr=(int*)malloc(nIdx*sizeof(int));
-		arr[0]=1;
+		arr[0]=0;
 		for(j=1;j<=nIdx;j+=2) arr[j]=k++;
 		exeFunc(arr,0,nIdx,0);
 		printf("\n");
