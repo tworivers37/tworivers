@@ -87,3 +87,52 @@ int main(){
 	
 	return 0;
 }
+
+
+#include<iostream>
+
+using namespace std;
+
+//추의 무게가 3의 지수 승
+//3진법 이용.
+//해당 자리가 2가 되면 1을 더하고(3^0 * 2 +1 -> 3^1 * 1 + 3^0 * 0)
+//왼쪽에 해당 자리의 값을 더해줌.(n+3^0)
+
+const int w[7]={1,3,9,27,81,243,729};// 3^1, 3^2, 3^3, ...
+int three[7];
+int output[10];
+int n=5;
+int idx=0;
+
+void toThree(int num){
+	for(int i=0;num!=0;i++,num=num/3) three[i]=num%3;
+}
+
+int check(){
+	for(int i=0;i<7;i++){
+		if(three[i]==2){
+			n=n+w[i];
+			output[idx++]=w[i];
+			return 2;
+		}
+	}
+	return 0;
+}
+
+void solv(){
+	output[idx++]=n;
+	do{
+		toThree(n);
+	} while(check()==2);
+	idx++;
+	for(int i=0;i<7;i++)
+		if(three[i]==1) output[idx++]=w[i];
+	for(int i=0;i<idx;i++) cout<<output[i]<<" ";
+	cout<<endl;
+}
+
+int main(){
+	solv();
+	return 0;
+}
+
