@@ -45,8 +45,8 @@ long long int solv(long long int x){
 	//1+2+3....= s 에서 1을 -1 로 바꾸게되면 s의 값은 s-2가 되는 것을 이용.
 	//2를 -2 로 바꾸면 s-4
 	//(i+1)-(i+2) = -1 임.
-	sub=x-s;
-	if(abs(sub)%2==0) return i;
+
+	if((s-x)%2==0) return i;
 	else return i+2;
 }
 int main(){
