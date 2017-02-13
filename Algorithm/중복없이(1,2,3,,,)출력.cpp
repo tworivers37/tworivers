@@ -34,6 +34,6 @@ void _func(string p,int c){
 }
 
 int main(){
-		_func("",n);
+    _func("",n);
     return 0;
 }
