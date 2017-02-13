@@ -1,8 +1,7 @@
 /*
-중복없이
-{1,2,3....}
-
+중복없이 (1,2,3,...)을 조합하여 출력.
 */
+
 #include <cstdio>
 #include<iostream>
 #include<sstream>
