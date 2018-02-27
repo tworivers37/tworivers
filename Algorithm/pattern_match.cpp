@@ -2,6 +2,7 @@
 #include<string>
 #include<cstring>
 
+//* 가 어디까지 매칭 되어야 하느냐?
 bool match(std::string str,std::string pattern){
         if(pattern.size()==0) return str.size()==0;
 
