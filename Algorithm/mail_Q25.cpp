@@ -14,6 +14,12 @@ output: -1
 input: [4, 6, 7, 8, 1, 2, 3], 5
 output: -1
 
+풀이:binary search 로 z를 구하고 다시 binary search 를 통해 값의 유무를 확인한다.
+오름차순으로 정렬된 배열의 앞 부분이 뒤쪽으로 넘어간거기 때문에 arr[first]<arr[mid] 가 아닌 곳을 찾아서
+범위를 좁혀나가면 z 를 구할 수 있음. 그리고 유무를 확인하기 위한 binary search를 해야하는데,
+비교하는 값은 mid의 값과 target의 값이기 때문에 일반적인(0~n) binary search에서 구해지는 mid 값만
+상대적인 위치를 구해서 target 값과 비교하면 됨.
+
 */
 
 #include<iostream>
