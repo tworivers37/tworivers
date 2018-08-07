@@ -1,6 +1,5 @@
 /*
   bubble sort 개선
-  O(n)
 */
 #include<iostream>
 
