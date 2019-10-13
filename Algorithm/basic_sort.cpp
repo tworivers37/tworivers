@@ -252,6 +252,49 @@ void intro_sort(std::vector<int>& values){
     intro_sort_util(values, 0, values.size() - 1, depth);
 }
 
+int special_number = 1;
+class Trie{
+    public:
+        Trie() : tree(std::vector<Trie*>(50, nullptr)), is_finished(false), encode_values(std::vector<unsigned int>(50, 0)) {
+        }
+        ~Trie(){
+        }
+        unsigned int encode(char ch){
+            unsigned char uch = static_cast<unsigned char>(ch);
+            unsigned int uint = static_cast<unsigned int>(uch);
+            
+            if(encode_values.size() - 1 < uint)
+                encode_values.resize(encode_values.size() + 100);
+
+            if(encode_values[uint] == 0)
+                encode_values[uint] = special_number++;
+            
+            return encode_values[uint]; 
+        }
+        void insert(std::string&& str){
+            if(str.empty() == true){
+                is_finished = true;
+                return;
+            }
+            
+            int current = encode(str[0]);
+            if(tree.size() - 1 < current) tree.resize(tree.size() + 100);
+            if(tree[current] == nullptr) tree[current] = new Trie();
+            tree[current]->insert(std::move(std::string(str.begin() + 1, str.end())));
+        }
+        Trie* find(std::string&& str){
+            if(is_finished == true) return this;
+            if(str.empty() == true) return nullptr;
+
+            int current = encode(str[0]);
+            if(tree[current] == nullptr) return nullptr;
+            return tree[current]->find(std::string(str.begin() + 1, str.end())); 
+        }
+    public:
+        std::vector<Trie*> tree;
+        bool is_finished;
+        std::vector<unsigned int> encode_values;
+};
 
 int main(){
     std::vector<int> values(100,0);
